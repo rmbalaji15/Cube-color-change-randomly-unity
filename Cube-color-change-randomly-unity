@@ -1,0 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class sample : MonoBehaviour {
+
+    // var for find Array index
+    private int i = 0;
+
+    // var to store Array max value
+    private int n;
+
+    // Use this for initialization
+    void Start () {
+
+	}
+	
+	// Update is called once per frame
+	void Update () {
+
+        //store cube in array (using tag Cube)
+        GameObject[] cubeArray = GameObject.FindGameObjectsWithTag("Cube");
+
+        //Array's final value
+        n = cubeArray.Length - 1;
+
+
+        //Pressind Space key
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            
+            
+            if (i < cubeArray.Length)
+            {
+                //Print current cube name in the array
+                Debug.Log(cubeArray[i].name);
+             
+                //For changing current cube color randomly in the array
+                cubeArray[i].GetComponent<Renderer>().material.color = Color.HSVToRGB(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+
+                
+                if (i > 0)
+                {
+                    cubeArray[i - 1].GetComponent<Renderer>().material.color = Color.white;
+                }
+                else if(i ==0)
+                {
+                    cubeArray[n ].GetComponent<Renderer>().material.color = Color.white;
+                }
+
+                Debug.Log("Assigned");
+
+                i++;
+
+               
+                if (i>=cubeArray.Length)
+                {
+                    i = 0;
+                    
+                }
+            }
+            
+
+
+        }
+                
+            
+
+            
+        
+
+       
+       
+
+	}
+}
